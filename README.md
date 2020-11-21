@@ -24,7 +24,7 @@ PostgreSQL database user names are logically separate from user names of the ope
 Client authentication is controlled by a configuration file, which traditionally is named pg_hba.conf (HBA stands for host-based authentication). On Debian Linux, the file is stored in
 
 ```
-/etc/postgresql/9.6/main
+/etc/postgresql/13/main
 ```
 
 
