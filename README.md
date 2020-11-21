@@ -154,3 +154,19 @@ moviemanager=# \d
  public | movies | table | moviemanager
 (1 row)
 ```
+
+To display the columns in psql, do:
+
+```
+moviemanager=# \d+ movies
+                                    Table "public.movies"
+  Column  |  Type   | Collation | Nullable | Default | Storage  | Stats target | Description 
+----------+---------+-----------+----------+---------+----------+--------------+-------------
+ id       | integer |           | not null |         | plain    |              | 
+ title    | text    |           | not null |         | extended |              | 
+ director | text    |           | not null |         | extended |              | 
+ synopsis | text    |           | not null |         | extended |              | 
+Indexes:
+    "movies_pkey" PRIMARY KEY, btree (id)
+Access method: heap
+```
