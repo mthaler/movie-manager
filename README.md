@@ -131,3 +131,26 @@ postgres=# \l
               |              |          |             |             | postgres=CTc/postgres
 (4 rows)
 ```
+
+To switch to the moviemanager database in psql, do:
+
+```
+postgres=# \c moviemanager
+```
+
+The CreateMoviesTable utility class will create the movies table used by moviemanager. Run it with the following arguments:
+
+```
+--username moviemanager --password secret
+```
+
+where the password needs to be replaced by the real password. In psql we should now see the movies database:
+
+```
+moviemanager=# \d
+           List of relations
+ Schema |  Name  | Type  |    Owner     
+--------+--------+-------+--------------
+ public | movies | table | moviemanager
+(1 row)
+```
