@@ -12,7 +12,7 @@ public class CreateMoviesTable {
         Class.forName("org.postgresql.Driver").newInstance();
         Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/moviemanager", options.getUsername(), options.getPassword());
         Statement st = connection.createStatement();
-        boolean result = st.execute("CREATE TABLE  MOVIES(ID integer PRIMARY KEY, TITLE TEXT NOT NULL, DIRECTOR TEXT NOT NULL, SYNOPSIS);");
+        boolean result = st.execute("CREATE TABLE  MOVIES(ID integer PRIMARY KEY, TITLE TEXT NOT NULL, DIRECTOR TEXT NOT NULL, SYNOPSIS TEXT NOT NULL);");
         st.close();
         System.out.println(result);
     }
