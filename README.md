@@ -113,5 +113,21 @@ To create a new database, execute the following shell command as user postgres:
 
 
 ```
-$ createdb -O joe joework
+$ createdb -O moviemanager moviemanager
+```
+
+This will create a new database moviemanager owned by the user moviemanager:
+
+```
+postgres=# \l
+                                     List of databases
+     Name     |    Owner     | Encoding |   Collate   |    Ctype    |   Access privileges   
+--------------+--------------+----------+-------------+-------------+-----------------------
+ moviemanager | moviemanager | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ postgres     | postgres     | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ template0    | postgres     | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+              |              |          |             |             | postgres=CTc/postgres
+ template1    | postgres     | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+              |              |          |             |             | postgres=CTc/postgres
+(4 rows)
 ```
