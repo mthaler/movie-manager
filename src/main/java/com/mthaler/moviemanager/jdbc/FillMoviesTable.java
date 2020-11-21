@@ -2,7 +2,6 @@ package com.mthaler.moviemanager.jdbc;
 
 import com.mthaler.moviemanager.cli.Options;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
 public class FillMoviesTable {
@@ -11,8 +10,7 @@ public class FillMoviesTable {
 
     public static void main(String[] args) throws Exception {
         Options options = Options.parseOptions(args);
-        Class.forName("org.postgresql.Driver").newInstance();
-        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/moviemanager", options.getUsername(), options.getPassword());
+        Connection connection = ConnectionHelper.connect(options);
          PreparedStatement pst = connection.prepareStatement(insertSql);
         pst.setInt(1, 1);
         pst.setString(2, "Top Gun");
