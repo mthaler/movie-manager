@@ -81,16 +81,31 @@ postgres-# \l
 
 #### Create user
 
-To create a new user, execute the following shell command as user postgres:
-
+To create a new user, execute the following **shell command** as user postgres:
 
 ```
-$ createuser -DRS joe
+$ createuser -dRS moviemanager
+```
+
+This will create a new user that can create databases, but no roles and the user does not have superuser privileges. psql should now show the new user:
+
+```
+postgres=# \du
+                                     List of roles
+  Role name   |                         Attributes                         | Member of 
+--------------+------------------------------------------------------------+-----------
+ moviemanager | Create DB                                                  | {}
+ postgres     | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+
 ```
 
 #### Set password
 
-To securely connect to the database from Java, we need to set a password for the user
+To securely connect to the database from Java, we need to set a password for the user:
+
+```
+ALTER USER moviemanager WITH PASSWORD 'new_password';
+```
 
 #### Create database
 
