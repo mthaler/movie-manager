@@ -138,6 +138,8 @@ To switch to the moviemanager database in psql, do:
 postgres=# \c moviemanager
 ```
 
+#### Create movies table
+
 The CreateMoviesTable utility class will create the movies table used by moviemanager. Run it with the following arguments:
 
 ```
@@ -169,4 +171,22 @@ moviemanager=# \d+ movies
 Indexes:
     "movies_pkey" PRIMARY KEY, btree (id)
 Access method: heap
+```
+
+#### Add data to movies table
+
+The FillMoviesTable utility class can be used to add some data to the movies table. Run it with the following arguments:
+
+```
+--username moviemanager --password secret
+```
+
+where the password needs to be replaced by the real password. To check that the data was actually added to the movies table, run the following query with psql:
+
+```
+moviemanager=# select * from movies;
+ id |  title  |  director  |                                                                                                 synopsis                                                                                                 
+----+---------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  1 | Top Gun | Tony Scott | Maverick is a hot pilot. When he encounters a pair of MiGs over the Persian Gulf, his wingman is clearly outflown and freaks. On almost no fuel, Maverick is able to talk him back down to the Carrier..
+(1 row)
 ```
