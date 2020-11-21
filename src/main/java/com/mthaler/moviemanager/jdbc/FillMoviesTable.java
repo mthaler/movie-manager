@@ -1,4 +1,4 @@
-package com.mthaler.moviemanager.util;
+package com.mthaler.moviemanager.jdbc;
 
 import com.mthaler.moviemanager.cli.Options;
 import java.sql.Connection;
