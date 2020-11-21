@@ -55,14 +55,11 @@ $ psql testdb
 To list all users, use the display user (du) command:
 
 ```
-postgres=# \du                                   List of roles
+postgres-# \du
+                                   List of roles
  Role name |                         Attributes                         | Member of 
 -----------+------------------------------------------------------------+-----------
- michi     | Create DB                                                  | {}
  postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
- test      | Create DB                                                 +| {}
-           | Password valid until infinity                              | 
-
 ```
 
 #### List databases
@@ -70,21 +67,16 @@ postgres=# \du                                   List of roles
 To list all databases, use the list (l) command:
 
 ```
-postgres=# \l
-                                         List of databases
-          Name           |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges   
--------------------------+----------+----------+-------------+-------------+-----------------------
- archivetestcompressed   | test     | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
- archivetestuncompressed | test     | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
- mydb                    | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
- mydb2                   | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
- postgres                | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
- template0               | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
-                         |          |          |             |             | postgres=CTc/postgres
- template1               | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
-                         |          |          |             |             | postgres=CTc/postgres
- test                    | test     | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
-(8 rows)    
+postgres-# \l
+                                  List of databases
+   Name    |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges   
+-----------+----------+----------+-------------+-------------+-----------------------
+ postgres  | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ template0 | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+           |          |          |             |             | postgres=CTc/postgres
+ template1 | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+           |          |          |             |             | postgres=CTc/postgres
+(3 rows)  
 ```
 
 #### Create user
