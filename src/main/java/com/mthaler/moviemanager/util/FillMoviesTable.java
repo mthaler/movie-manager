@@ -24,5 +24,6 @@ public class FillMoviesTable {
                 + "him back down to the Carrier..");
         pst.execute();
         pst.close();
+        connection.close();
     }
 }

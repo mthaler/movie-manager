@@ -1,18 +1,24 @@
 package com.mthaler.moviemanager.util;
 
 import com.mthaler.moviemanager.cli.Options;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
+import java.sql.*;
 
-public class CreateMoviesTable {
+public class QueryMoviesTable {
 
     public static void main(String[] args) throws Exception {
         Options options = Options.parseOptions(args);
         Class.forName("org.postgresql.Driver").newInstance();
         Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/moviemanager", options.getUsername(), options.getPassword());
         Statement st = connection.createStatement();
-        st.execute("CREATE TABLE  MOVIES(ID integer PRIMARY KEY, TITLE TEXT NOT NULL, DIRECTOR TEXT NOT NULL, SYNOPSIS TEXT NOT NULL);");
+        ResultSet rs = st.executeQuery("SELECT * FROM MOVIES");
+        while (rs.next()) {
+            int id = rs.getInt("ID");
+            String title = rs.getString("TITLE");
+            String director = rs.getString("DIRECTOR");
+            String synopsis = rs.getString("SYNOPSIS");
+            System.out.println("id: " + id + " title: " + title + " director: " + director + " synopsis: " + synopsis);
+        }
+        rs.close();
         st.close();
         connection.close();
     }
