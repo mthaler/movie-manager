@@ -1,5 +1,6 @@
 package com.mthaler.moviemanager.jdbc;
 
+import com.mthaler.moviemanager.cli.Options;
 import com.mthaler.moviemanager.model.Movie;
 import java.sql.*;
 import java.util.ArrayList;
@@ -7,15 +8,15 @@ import java.util.List;
 
 public class MovieManager {
 
+    private final Options options;
     private Connection connection = null;
-    private String username = "user";
-    private String password = "secret";
     private String url = "jdbc:mysql://localhost:3307/JH";
     private String driverClass = "com.mysql.jdbc.Driver";
     private String tableSql = "create table MOVIES (ID integer not null, TITLE varchar(255), DIRECTOR varchar(255), SYNOPSIS varchar(255), primary key (ID))";
     private String insertSql = "INSERT INTO MOVIES VALUES (?,?,?,?)";
 
-    public MovieManager() {
+    public MovieManager(String[] args) {
+        options = Options.parseOptions(args);
     }
 
     private void init() {
@@ -26,7 +27,7 @@ public class MovieManager {
     private void createConnection() {
         try {
             Class.forName(driverClass).newInstance();
-            connection = DriverManager.getConnection(url, username, password);
+            connection = DriverManager.getConnection(url, options.getUsername(), options.getPassword());
         } catch (Exception ex) {
             System.err.println("Exception while creating a connection:"
                     + ex.getMessage());
@@ -110,7 +111,7 @@ public class MovieManager {
     }
 
     public static void main(String[] args) {
-        MovieManager movieManager = new MovieManager();
+        MovieManager movieManager = new MovieManager(args);
         movieManager.init();
         movieManager.persistMovie();
         movieManager.queryMovies();
