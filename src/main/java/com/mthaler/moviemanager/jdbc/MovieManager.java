@@ -10,8 +10,6 @@ public class MovieManager {
 
     private final Options options;
     private Connection connection = null;
-    private String url = "jdbc:mysql://localhost:3307/JH";
-    private String driverClass = "com.mysql.jdbc.Driver";
     private String tableSql = "create table MOVIES (ID integer not null, TITLE varchar(255), DIRECTOR varchar(255), SYNOPSIS varchar(255), primary key (ID))";
     private String insertSql = "INSERT INTO MOVIES VALUES (?,?,?,?)";
 
@@ -26,8 +24,8 @@ public class MovieManager {
 
     private void createConnection() {
         try {
-            Class.forName(driverClass).newInstance();
-            connection = DriverManager.getConnection(url, options.getUsername(), options.getPassword());
+            Class.forName("org.postgresql.Driver").newInstance();
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/moviemanager", options.getUsername(), options.getPassword());
         } catch (Exception ex) {
             System.err.println("Exception while creating a connection:"
                     + ex.getMessage());
