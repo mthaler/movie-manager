@@ -10,6 +10,8 @@ public class MovieManager {
         Options options = Options.parseOptions(args);
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
+                .applySetting("hibernate.connection.username", options.getUsername())
+                .applySetting("hibernate.connection.password", options.getPassword())
                 .build();
     }
 
