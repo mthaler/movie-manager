@@ -8,43 +8,18 @@ import java.util.List;
 
 public class MovieManager {
 
-    private final Options options;
-    private Connection connection = null;
+    private final Connection connection;
     private String tableSql = "create table MOVIES (ID integer not null, TITLE varchar(255), DIRECTOR varchar(255), SYNOPSIS varchar(255), primary key (ID))";
     private String insertSql = "INSERT INTO MOVIES VALUES (?,?,?,?)";
 
-    public MovieManager(String[] args) {
-        options = Options.parseOptions(args);
-    }
-
-    private void init() {
-        // Create a connection
-        createConnection();
-    }
-
-    private void createConnection() {
-        try {
-            Class.forName("org.postgresql.Driver").newInstance();
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/moviemanager", options.getUsername(), options.getPassword());
-        } catch (Exception ex) {
-            System.err.println("Exception while creating a connection:"
-                    + ex.getMessage());
-        }
-        System.out.println("Connection created successfully");
-    }
-
-    private Connection getConnection() {
-
-        if (connection == null) {
-            createConnection();
-        }
-
-        return connection;
+    public MovieManager(String[] args) throws Exception {
+        Options options = Options.parseOptions(args);
+        connection = ConnectionHelper.connect(options);
     }
 
     private void persistMovie() {
         try {
-            PreparedStatement pst = getConnection().prepareStatement(insertSql);
+            PreparedStatement pst = connection.prepareStatement(insertSql);
 
             pst.setInt(1, 1);
             pst.setString(2, "Top Gun");
@@ -65,7 +40,7 @@ public class MovieManager {
 
     private void queryMovie() {
         try {
-            PreparedStatement pst = getConnection().prepareStatement(insertSql);
+            PreparedStatement pst = connection.prepareStatement(insertSql);
 
             pst.setInt(1, 1);
             pst.setString(2, "Top Gun");
@@ -88,7 +63,7 @@ public class MovieManager {
         List<Movie> movies = new ArrayList<Movie>();
         Movie m = null;
         try {
-            Statement st = getConnection().createStatement();
+            Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM MOVIES");
             while (rs.next()) {
                 m = new Movie();
@@ -104,13 +79,8 @@ public class MovieManager {
         }
     }
 
-    public void setConnection(Connection connection) {
-        this.connection = connection;
-    }
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         MovieManager movieManager = new MovieManager(args);
-        movieManager.init();
         movieManager.persistMovie();
         movieManager.queryMovies();
 
