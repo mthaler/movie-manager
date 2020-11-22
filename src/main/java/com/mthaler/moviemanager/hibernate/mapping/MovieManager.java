@@ -1,4 +1,4 @@
-package com.mthaler.moviemanager.hibernate;
+package com.mthaler.moviemanager.hibernate.mapping;
 
 import com.mthaler.moviemanager.cli.Options;
 import com.mthaler.moviemanager.model.Movie;
@@ -16,7 +16,7 @@ public class MovieManager {
     public MovieManager(String[] args) throws Exception {
         Options options = Options.parseOptions(args);
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                .configure() // configures settings from hibernate.cfg.xml
+                .configure("hibernate_mapping.cfg.xml") // configures settings from hibernate_mapping.cfg.xml
                 .applySetting("hibernate.connection.username", options.getUsername())
                 .applySetting("hibernate.connection.password", options.getPassword())
                 .build();

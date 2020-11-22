@@ -1,4 +1,4 @@
-package com.mthaler.moviemanager.model.annotated;
+package com.mthaler.moviemanager.model.annotations;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
