@@ -5,7 +5,7 @@
 <hibernate-mapping>
     <class name="com.mthaler.moviemanager.model.Actor" table="ACTORS">
         <id name="id" column="ID">
-            <generator class="auto"/>
+            <generator class="assigned"/>
         </id>
         <property name="name" column="NAME"/>
         <property name="gender" column="GENDER"/>

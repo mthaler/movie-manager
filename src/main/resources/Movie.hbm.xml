@@ -6,7 +6,7 @@
 
     <class name="com.mthaler.moviemanager.model.Movie" table="MOVIES">
         <id name="id" column="ID">
-            <generator class="auto"/>
+            <generator class="assigned"/>
         </id>
         <property name="title" column="TITLE"/>
         <property name="director" column="DIRECTOR"/>
