@@ -8,6 +8,8 @@
         <property name="dialect">org.hibernate.dialect.PostgreSQL82Dialect</property>
         <property name="current_session_context_class">thread</property>
         <property name="hbm2ddl.auto">update</property>
+        <!-- do not use this in production! -->
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>
         <mapping resource="Actor.hbm.xml" />
         <mapping resource="Movie.hbm.xml" />
     </session-factory>
