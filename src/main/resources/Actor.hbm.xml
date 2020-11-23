@@ -3,13 +3,11 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-
-    <class name="com.mthaler.moviemanager.model.Movie" table="MOVIES">
+    <class name="com.mthaler.moviemanager.model.Actor" table="ACTORS">
         <id name="id" column="ID">
             <generator class="auto"/>
         </id>
-        <property name="title" column="TITLE"/>
-        <property name="director" column="DIRECTOR"/>
-        <property name="synopsis" column="SYNOPSIS"/>
+        <property name="name" column="NAME"/>
+        <property name="gender" column="GENDER"/>
     </class>
 </hibernate-mapping>

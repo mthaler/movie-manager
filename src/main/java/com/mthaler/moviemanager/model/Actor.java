@@ -2,8 +2,17 @@ package com.mthaler.moviemanager.model;
 
 public class Actor {
 
+    private int id = 0;
     private String name = null;
     private String gender = null;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -24,7 +33,8 @@ public class Actor {
     @Override
     public String toString() {
         return "Actor{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", gender='" + gender + '\'' +
                 '}';
     }
