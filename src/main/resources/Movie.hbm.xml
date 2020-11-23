@@ -3,7 +3,6 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-
     <class name="com.mthaler.moviemanager.model.Movie" table="MOVIES">
         <id name="id" column="ID">
             <generator class="assigned"/>
@@ -11,5 +10,10 @@
         <property name="title" column="TITLE"/>
         <property name="director" column="DIRECTOR"/>
         <property name="synopsis" column="SYNOPSIS"/>
+        <list name="actors" cascade="all" table="ACTORS">
+            <key column="MOVIE_ID"/>
+            <index column="ACTOR_INDEX"/>
+            <one-to-many class="com.mthaler.moviemanager.model.Actor"/>
+        </list>
     </class>
 </hibernate-mapping>
