@@ -1,8 +1,10 @@
 package com.mthaler.moviemanager.cli;
 
+import com.mthaler.moviemanager.config.Credentials;
 import joptsimple.ArgumentAcceptingOptionSpec;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
+import java.util.Properties;
 
 public class Options {
 
@@ -23,9 +25,20 @@ public class Options {
     }
 
     public static Options parseOptions(String[] args) {
+        Options result = new Options();
+        Properties properties = Credentials.load();
+        if (properties != null) {
+            String username = properties.getProperty("username");
+            if (username != null) {
+                result.username = username;
+            }
+            String password = properties.getProperty("password");
+            if (password != null) {
+                result.password = password;
+            }
+        }
         MyOptionsParser parser = new MyOptionsParser();
         OptionSet options = parser.parse(args);
-        Options result = new Options();
         if (options.has(parser.username)) {
             result.username = options.valueOf(parser.username);
         }
