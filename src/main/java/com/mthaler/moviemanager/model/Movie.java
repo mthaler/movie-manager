@@ -1,11 +1,15 @@
 package com.mthaler.moviemanager.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Movie {
 
     private int id = 0;
     private String  title = null;
     private String  synopsis = null;
     private String  director = null;
+    private List<Actor> actors = new ArrayList<Actor>();
 
     public int getId() {
         return id;
@@ -39,6 +43,14 @@ public class Movie {
         this.director = director;
     }
 
+    public List<Actor> getActors() {
+        return actors;
+    }
+
+    public void setActors(List<Actor> actors) {
+        this.actors = actors;
+    }
+
     @Override
     public String toString() {
         return "Movie{" +
@@ -46,6 +58,7 @@ public class Movie {
                 ", title='" + title + '\'' +
                 ", synopsis='" + synopsis + '\'' +
                 ", director='" + director + '\'' +
+                ", actors=" + actors +
                 '}';
     }
 }
