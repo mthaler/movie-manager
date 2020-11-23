@@ -56,6 +56,7 @@ public class MovieManager {
 
     public static void main(String[] args) throws Exception {
         MovieManager movieManager = new MovieManager(args);
+        movieManager.persistMovie();
         movieManager.findAll();
     }
 }
